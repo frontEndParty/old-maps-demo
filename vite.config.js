@@ -1,5 +1,5 @@
 export default {
-  base: "/fep/",
+  base: "/oldmaps/",
   build: {
     sourcemap: true,
     rollupOptions: {
