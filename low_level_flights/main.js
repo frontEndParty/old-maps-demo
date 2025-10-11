@@ -1,5 +1,6 @@
-import './style.css';
+import '../style.css';
 import {Map, View, Feature, Tile} from 'ol';
+import {Attribution} from 'ol/control';
 import { Point } from "ol/geom";
 import { Style, Icon } from "ol/style";
 import TileLayer from 'ol/layer/Tile';
@@ -8,6 +9,7 @@ import { StadiaMaps, Vector, TileJSON, OSM } from 'ol/source';
 import { fromLonLat } from 'ol/proj'
 
 import LayerSwitcher from "ol-ext/control/LayerSwitcher";
+import Swipe from "ol-ext/control/Swipe";
 import Game from "ol-games/game/Game";
 
 // StadiaMaps - Other available layer options listed here:
@@ -37,14 +39,19 @@ const no1885lyr = new TileLayer({
   preload:Infinity,
   source: new TileJSON({
     url: "https://oldinsurancemaps.net/map/sanborn03376_002/main-content/tilejson",
+    attributions: ["OldInsuranceMaps contributors; Library of Congress"]
   })
 })
  
 
 let a = 0;
-let center = fromLonLat([-90.064089, 29.958815]);
-let speed = 0.005;
+let center = fromLonLat([-90.063637, 29.958022]);
 let zoom = 20;
+
+// IMPORTANT: don't set the speed super high! The map
+// tile servers won't be able to keep up! Also, speed is
+// relative to zoom, it is not absolute
+let speed = 0.008;
 
 let plane = new Feature(new Point(center));
 plane.setStyle ( new Style({
@@ -52,7 +59,7 @@ plane.setStyle ( new Style({
     src: "img/Biploar_type4_1.png",
     scale:0.6
   }),
-  zIndex:1
+  zIndex:11
 }) );
 let shadow = new Feature(new Point(center));
 
@@ -94,12 +101,20 @@ game.getMap().on("click", function(e){
 const switcher = new LayerSwitcher;
 game.getMap().addControl(switcher)
 
+const swipe = new Swipe({
+  rightLayers: no1885lyr,
+  position: .25,
+})
+game.getMap().addControl(swipe)
+
+game.getMap().addControl(new Attribution())
+
 game.on ("render", function(e) {
   center[0] += speed * e.dt * Math.cos(a);
   center[1] -= speed * e.dt * Math.sin(a);
   game.getView().setCenter(center);
   plane.getGeometry().setCoordinates(center);
-  shadow.getGeometry().setCoordinates([center[0]+(zoom*0.05), center[1]-zoom*0.09]);
+  shadow.getGeometry().setCoordinates([center[0]+(zoom*0.1), center[1]-zoom*0.15]);
 });
 
 game.start();
