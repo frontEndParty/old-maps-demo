@@ -10,7 +10,10 @@ import { fromLonLat } from 'ol/proj'
 import LayerSwitcher from "ol-ext/control/LayerSwitcher";
 import Game from "ol-games/game/Game";
 
-const watercolor = new TileLayer({
+// StadiaMaps - Other available layer options listed here:
+// https://openlayers.org/en/latest/apidoc/module-ol_source_StadiaMaps-StadiaMaps.html
+const basemap = new TileLayer({
+  title: "Basemap",
   preload:Infinity,
   source: new StadiaMaps({
     layer: 'osm_bright'
@@ -24,9 +27,13 @@ const streets = new TileLayer({
   })
 });
 
-const overlay = new VectorLayer({ source: new Vector() });
+const overlay = new VectorLayer({
+  title: "Plane",
+  source: new Vector(),
+});
 
 const no1885lyr = new TileLayer({
+  title: "New Orleans 1885",
   preload:Infinity,
   source: new TileJSON({
     url: "https://oldinsurancemaps.net/map/sanborn03376_002/main-content/tilejson",
@@ -71,7 +78,7 @@ function getDirection(pt){
 const game = new Game({
   target: 'map',
   layers: [
-    watercolor,
+    basemap,
     no1885lyr,
     overlay
   ],
