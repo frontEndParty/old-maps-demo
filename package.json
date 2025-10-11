@@ -1,0 +1,17 @@
+{
+  "name": "fep-oldinsurancemaps",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.1.7"
+  },
+  "dependencies": {
+    "ol": "latest",
+    "ol-ext": "^4.0.35",
+    "ol-games": "^2.0.0"
+  }
+}
