@@ -56,7 +56,7 @@ let speed = 0.008;
 let plane = new Feature(new Point(center));
 plane.setStyle ( new Style({
   image: new Icon({
-    src: "img/Biploar_type4_1.png",
+    src: "../img/Biploar_type4_1.png",
     scale:0.6
   }),
   zIndex:11
@@ -65,7 +65,7 @@ let shadow = new Feature(new Point(center));
 
 shadow.setStyle ( new Style({
   image: new Icon({
-    src: "img/Biploar_shadow.png",
+    src: "../img/Biploar_shadow.png",
     scale:0.45,
     opacity:.8
   }),
