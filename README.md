@@ -49,9 +49,13 @@ Finally, update `vite.config.js` with a new line to get your new map included in
       }
 ```
 
-You should be able to view your app at https://localhost:5173/oldmaps/my_map
+You should be able to view your app at https://localhost:5173/oldmaps/my_map.
 
-Once all of your work is committed, make a PR to this repo and we'll merge it in!
+Be sure to run a production build to make sure your map is included (this is how the GitHub pages is deployed):
+
+    npm run build
+
+Finally, once your work is committed, make a PR to this repo and we'll merge it in!
 
 ## OpenLayers examples
 
