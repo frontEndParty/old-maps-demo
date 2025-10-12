@@ -1,0 +1,83 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Treme Market"
+      },
+      "geometry": {
+        "coordinates": [
+          -90.07143134811596,
+          29.963141907384227
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Poydras Market"
+      },
+      "geometry": {
+        "coordinates": [
+          -90.07426648948507,
+          29.950392632747125
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pilie Market"
+      },
+      "geometry": {
+        "coordinates": [
+          -90.07531426510022,
+          29.950649361493944
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Magazine St. Market"
+      },
+      "geometry": {
+        "coordinates": [
+          -90.07440447042163,
+          29.931408197891386
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ninth St. Market"
+      },
+      "geometry": {
+        "coordinates": [
+          -90.08619432705844,
+          29.92375811480288
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Carrollton Market"
+      },
+      "geometry": {
+        "coordinates": [
+          -90.1340137869977,
+          29.944900705508232
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}

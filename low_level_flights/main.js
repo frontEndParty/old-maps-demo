@@ -6,7 +6,7 @@ import { Style, Icon } from "ol/style";
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import { StadiaMaps, Vector, TileJSON, OSM } from 'ol/source';
-import { fromLonLat } from 'ol/proj'
+import { fromLonLat, transformExtent } from 'ol/proj'
 
 import LayerSwitcher from "ol-ext/control/LayerSwitcher";
 import Swipe from "ol-ext/control/Swipe";
@@ -34,9 +34,12 @@ const overlay = new VectorLayer({
   source: new Vector(),
 });
 
+// go to the "tilejson" link and copy out the bounds listed there into this variable.
+const no1885lyrBounds = [-90.09063720703124, 29.943779130679083, -90.03089904785155, 29.987947253623624]
 const no1885lyr = new TileLayer({
   title: "New Orleans 1885",
   preload:Infinity,
+  extent: transformExtent(no1885lyrBounds, "EPSG:4326", "EPSG:3857"),
   source: new TileJSON({
     url: "https://oldinsurancemaps.net/map/sanborn03376_002/main-content/tilejson",
     attributions: ["OldInsuranceMaps contributors; Library of Congress"]
@@ -48,9 +51,8 @@ let a = 0;
 let center = fromLonLat([-90.063637, 29.958022]);
 let zoom = 20;
 
-// IMPORTANT: don't set the speed super high! The map
-// tile servers won't be able to keep up! Also, speed is
-// relative to zoom, it is not absolute
+// IMPORTANT: don't set the speed too high! The map
+// tile servers won't be able to keep up.
 let speed = 0.008;
 
 let plane = new Feature(new Point(center));
@@ -118,3 +120,10 @@ game.on ("render", function(e) {
 });
 
 game.start();
+
+function endFlight() {
+  game.pause();
+  alert("This flight has ended.");
+}
+
+setTimeout(endFlight, 15000)

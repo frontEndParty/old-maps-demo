@@ -5,7 +5,8 @@ export default {
     rollupOptions: {
       input: {
         main:'index.html',
-        low_level_flights: 'low_level_flights/index.html'
+        low_level_flights: 'low_level_flights/index.html',
+        lost_markets: 'lost_markets/index.html'
       }
     }
   }
