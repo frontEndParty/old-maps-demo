@@ -9,7 +9,8 @@ import { StadiaMaps, Vector, TileJSON, OSM } from 'ol/source';
 import { fromLonLat, transformExtent } from 'ol/proj'
 
 import LayerSwitcher from "ol-ext/control/LayerSwitcher";
-import Swipe from "ol-ext/control/Swipe";
+import Clip from "ol-ext/filter/Clip";
+
 import Game from "ol-games/game/Game";
 
 // StadiaMaps - Other available layer options listed here:
@@ -35,13 +36,13 @@ const overlay = new VectorLayer({
 });
 
 // go to the "tilejson" link and copy out the bounds listed there into this variable.
+const tilejsonUrl = "https://oldinsurancemaps.net/map/sanborn03376_002/main-content/tilejson"
 const no1885lyrBounds = [-90.09063720703124, 29.943779130679083, -90.03089904785155, 29.987947253623624]
 const no1885lyr = new TileLayer({
   title: "New Orleans 1885",
-  preload:Infinity,
   extent: transformExtent(no1885lyrBounds, "EPSG:4326", "EPSG:3857"),
   source: new TileJSON({
-    url: "https://oldinsurancemaps.net/map/sanborn03376_002/main-content/tilejson",
+    url: tilejsonUrl,
     attributions: ["OldInsuranceMaps contributors; Library of Congress"]
   })
 })
@@ -103,11 +104,19 @@ game.getMap().on("click", function(e){
 const switcher = new LayerSwitcher;
 game.getMap().addControl(switcher)
 
-const swipe = new Swipe({
-  rightLayers: no1885lyr,
-  position: .25,
+// based on example: https://viglino.github.io/ol-ext/examples/filter/map.filter.clip.html
+// and example code: https://github.com/Viglino/ol-ext/blob/master/examples/filter/map.filter.clip.html
+const clipCoords = []
+for (var i=0; i<2*Math.PI; i+=0.1) {
+  clipCoords.push([ 600*(0.5+Math.cos(i)/2)+10, 600*(0.5+Math.sin(i)/2)+10 ]);
+}
+const clip = new Clip({
+  coords: clipCoords,
+  position: "middle-center",
+  extent: [0,0,600,600],
+  unit: "px",
 })
-game.getMap().addControl(swipe)
+no1885lyr.addFilter(clip)
 
 game.getMap().addControl(new Attribution())
 
@@ -119,11 +128,13 @@ game.on ("render", function(e) {
   shadow.getGeometry().setCoordinates([center[0]+(zoom*0.1), center[1]-zoom*0.15]);
 });
 
+alert("Fly around the French Quarter in 1885. Click or tap on the map to change direction.")
 game.start();
+
 
 function endFlight() {
   game.pause();
   alert("This flight has ended.");
 }
 
-setTimeout(endFlight, 15000)
+setTimeout(endFlight, 100000)
