@@ -1,5 +1,5 @@
 export default {
-  base: "/oldmaps/",
+  base: "/old-maps-demo/",
   build: {
     sourcemap: true,
     rollupOptions: {
