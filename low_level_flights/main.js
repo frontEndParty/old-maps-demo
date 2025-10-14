@@ -13,20 +13,26 @@ import Clip from "ol-ext/filter/Clip";
 
 import Game from "ol-games/game/Game";
 
+const basemap = new TileLayer({
+  // preload:Infinity,
+  source: new OSM(),
+  // tileLoadFunction: (imageTile, src) => {
+  //     const img = imageTile.getImage();
+  //     // Set the per-image referrer policy before assigning the src
+  //     if (img && 'referrerPolicy' in img) {
+  //       img.referrerPolicy = 'origin-when-cross-origin';
+  //     }
+  //     img.src = src;
+  //   }
+});
+
 // StadiaMaps - Other available layer options listed here:
 // https://openlayers.org/en/latest/apidoc/module-ol_source_StadiaMaps-StadiaMaps.html
-const basemap = new TileLayer({
+const basemap2 = new TileLayer({
   title: "Basemap",
   preload:Infinity,
   source: new StadiaMaps({
     layer: 'osm_bright'
-  })
-});
-
-const streets = new TileLayer({
-  preload:Infinity,
-  source: new OSM({
-    maxZoom: 20
   })
 });
 
@@ -54,7 +60,7 @@ let zoom = 20;
 
 // IMPORTANT: don't set the speed too high! The map
 // tile servers won't be able to keep up.
-let speed = 0.008;
+let speed = 0.01;
 
 let plane = new Feature(new Point(center));
 plane.setStyle ( new Style({
@@ -128,13 +134,21 @@ game.on ("render", function(e) {
   shadow.getGeometry().setCoordinates([center[0]+(zoom*0.1), center[1]-zoom*0.15]);
 });
 
-alert("Fly around the French Quarter in 1885. Click or tap on the map to change direction.")
+alert("Fly around the French Quarter in 1885. Click or tap on the map to change direction. Use the space bar to pause your flight.")
 game.start();
 
 
 function endFlight() {
-  game.pause();
-  alert("This flight has ended.");
+  alert("Continue your journey?");
 }
+document.onkeydown = function(evt) {
+    if (evt.code == "Space") {
+      if (game.paused()) {
+        game.start()
+      } else {
+        game.pause()
+      }
+    }
+};
 
-setTimeout(endFlight, 100000)
+setTimeout(endFlight, 30000)

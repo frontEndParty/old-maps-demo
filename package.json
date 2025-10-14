@@ -10,7 +10,8 @@
     "vite": "^7.1.9"
   },
   "dependencies": {
-    "ol": "latest",
+    "leaflet": "^1.9.4",
+    "ol": "10.6.1",
     "ol-ext": "^4.0.35",
     "ol-games": "^2.0.0"
   }
