@@ -6,7 +6,8 @@ export default {
       input: {
         main:'index.html',
         low_level_flights: 'low_level_flights/index.html',
-        lost_markets: 'lost_markets/index.html'
+        lost_markets: 'lost_markets/index.html',
+        lost_markets_leaflet: 'lost_markets_leaflet/index.html'
       }
     }
   }

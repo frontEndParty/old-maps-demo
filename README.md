@@ -57,7 +57,7 @@ Be sure to run a production build to make sure your map is included (this is how
 
 Finally, once your work is committed, make a PR to this repo and we'll merge it in!
 
-## OpenLayers examples
+## Examples
 
 Two examples show how layers from OldInsuranceMaps can be brought into a web map environment using <a href="https://openlayers.org">OpenLayers</a>, a JavaScript web mapping library. Each example does little more than adapt example code and then add some old map layers.
 
@@ -74,3 +74,11 @@ Flies a lil plane around the French Quarter in 1885. Click/tap the map to change
 
 - adapted from [game loop](https://viglino.github.io/ol-games/examples/map.gameloop.html) example in [ol-games](https://viglino.github.io/ol-games)
 - also uses [swipe control](https://viglino.github.io/ol-ext/examples/control/map.control.swipe.html) from [ol-ext](https://viglino.github.io/ol-ext/examples/control/map.control.swipe.html)
+
+## Resources to work with
+
+- How to find TileJSON URLS in OldInsuranceMaps.net: https://oldinsurancemaps.net/frontend-party/
+- Leaflet docs: https://leafletjs.com/reference.html#tilelayer
+- OpenLayers core examples and docs: https://openlayers.org
+- OpenLayers extensions (ol-ext) examples and docs: https://viglino.github.io/ol-ext/
+- OpenLayers games (ol-games) examples: https://viglino.github.io/ol-games
