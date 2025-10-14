@@ -151,4 +151,4 @@ document.onkeydown = function(evt) {
     }
 };
 
-setTimeout(endFlight, 30000)
+setTimeout(endFlight, 120000)
