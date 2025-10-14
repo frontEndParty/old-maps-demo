@@ -2,6 +2,8 @@
 
 For this Front End Party we will incorporate historical map layers from OldInsuranceMaps.net into new web map applications. OIM makes it easy for people to "georeference" scans of old maps, and once they have been georeferenced they be used in web applications or geospatial analysis.
 
+Demos on GitHub pages: https://frontendparty.github.io/old-maps-demo
+
 ## Getting started
 
 You will need nodejs installed before getting started.
