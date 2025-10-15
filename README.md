@@ -51,7 +51,9 @@ Finally, update `vite.config.js` with a new line to get your new map included in
       }
 ```
 
-You should be able to view your app at https://localhost:5173/oldmaps/my_map.
+You should be able to view your app at https://localhost:5173/oldmaps/my_map/.
+
+> Note: You must add the trailing slash!
 
 Be sure to run a production build to make sure your map is included (this is how the GitHub pages is deployed):
 
